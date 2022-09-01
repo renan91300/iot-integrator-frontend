@@ -1,0 +1,28 @@
+{
+    "usuarios": [
+        {
+            "id": 0,
+            "nome": "Renato Ribeiro Altoé",
+            "usuario": "20191IMI028",
+            "senha": "5dfF844",
+            "categoria": 1
+        },
+        {
+            "id": 1,
+            "nome": "Rafael Silva Guimarães",
+            "usuario": "1919203",
+            "senha": "14_848",
+            "categoria": 0
+        }
+    ],
+    "categorias": [
+        {
+            "id": 0,
+            "nome": "Professor"
+        },
+        {
+            "id": 1,
+            "nome": "Aluno"
+        }
+    ]
+} 
