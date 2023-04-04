@@ -1,15 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
-import Login from './components/pages/Login'
+import './App.css';
+import Login from './pages/login';
+import Menu from './components/layout/Menu';
+import PrivateRoute from "./components/privateRoutes";
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
-
-function App(){
+function App() {
 
   return (
-    <div className="App" style={{backgroundImage: `url("https://i.imgur.com/uHXWgqG.jpeg")`}}>
-      <Login/>
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Login />} />
+        <Route
+          path="/menu"
+          element={
+            <PrivateRoute>
+              <Menu />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
+    </Router>
   )
 }
 

@@ -1,0 +1,13 @@
+aside {
+    float: right;
+    font-style: italic;
+    background-color: white;
+    display: flex;
+    padding-left: 0px;
+    border-left: 0px;
+    margin-left: 0px;
+} 
+
+h1{
+    padding-top: 10px;
+}

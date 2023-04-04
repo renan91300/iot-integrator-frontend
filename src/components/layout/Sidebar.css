@@ -1,0 +1,35 @@
+.sidebar{
+    background: rgb(27, 38, 56)!important;
+    margin-right: 50px;
+    top: 0!important;
+    left: 0!important;
+    display: flex!important;
+    flex-direction:column!important;
+    min-height: calc(100vh - 107px)!important;
+    justify-content: left!important;
+    text-align: left!important;
+    padding-right: 2px;
+    overflow: auto!important;
+    width: 22vw!important;
+    min-width:125px!important;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+aside{
+    font-style: normal!important;
+}
+
+.nav-link{
+    padding:0px 0px 2px 5px;
+    margin-bottom: 15px!important;
+    display: flex!important;
+}
+
+.nav-link{
+    color:white!important;
+}
+
+.dropdown-toggle::after{
+    margin-top: 0.7rem!important;
+    margin-left: 0.4rem!important;
+}
