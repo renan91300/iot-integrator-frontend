@@ -1,0 +1,35 @@
+{
+  "usuarios": [
+    {
+      "categoria": "1",
+      "nome": "Raphael Figueiredo",
+      "usuario": "20191IMI015",
+      "senha": "123",
+      "id": 4
+    }
+  ],
+  "categorias": [
+    {
+      "id": 0,
+      "nome": "Professor"
+    },
+    {
+      "id": 1,
+      "nome": "Aluno"
+    }
+  ],
+  "dispositivos": [
+    {
+      "nome": "Raspberry pi",
+      "hash": "ASHDAKSDHGFGHSJFBSADJHFGASJH",
+      "descricao": "testes",
+      "id": 1
+    },
+    {
+      "nome": "Arduino",
+      "hash": "DASD4651324Q5R6S23465Q723S1DA",
+      "descricao": "Bom",
+      "id": 2
+    }
+  ]
+}

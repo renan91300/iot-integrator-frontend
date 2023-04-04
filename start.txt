@@ -3,8 +3,14 @@ npm install react-bootstrap bootstrap
 npm run dev
 npm install -g json-server
 
-Set-ExecutionPolicy Unrestricted (powershell adm)
+// Set-ExecutionPolicy Unrestricted (powershell adm)
 json-server --watch db.json
 
 npm install @babel/plugin-syntax-import-assertions --save-dev
 npm install --save-dev @babel/plugin-syntax-dynamic-import
+
+
+npx json-server --watch db.json --port 8000
+
+
+https://www.npmjs.com/package/react-router-dom
