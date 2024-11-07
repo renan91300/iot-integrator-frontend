@@ -2,11 +2,11 @@ const Dashboard = () => {
     return (
         <>
             <h1>
-                Dashboard
+                Tela Inicial
             </h1>
             <hr style={{ width: "45vw" }}></hr>
             <h4>
-                Dados de Uso
+                Vai ter algumas métricas aqui, como por exemplo "Quantidade de dispositivos"
             </h4>
 
         </>

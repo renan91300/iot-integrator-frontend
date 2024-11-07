@@ -45,3 +45,19 @@ export async function patchUser(user) {
     const newUser = await axios.patch(`${url}/auth/users/${user.id}/`, user, config);
     return newUser.data;
 }
+
+export async function fetchDevices(project_id) {
+    const DeviceList = await axios.get(`${url}/device/`, {
+        params: { project_id: project_id },
+        headers: config.headers,
+    });
+    return DeviceList.data;
+}
+
+export async function fetchCategories(project_id) {
+    const CategoryList = await axios.get(`${url}/category/`, {
+        params: { project_id: project_id },
+        headers: config.headers,
+    });
+    return CategoryList.data;
+}

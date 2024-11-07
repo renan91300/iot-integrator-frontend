@@ -12,13 +12,13 @@ class GerardadosDispo extends Component {
     }
 
     async componentDidMount() {
-        const resp = await axios.get('http://localhost:8000/dispositivos')
+        const resp = await axios.get('http://localhost:8000/api/device/')
         this.setState({ dispositivos: resp.data })
     }
 
     async remove(id) {
         console.log(this.usuario)
-        var url = "http://localhost:8000/dispositivos/"
+        var url = "http://localhost:8000/api/device/"
         url += id
         console.log(url)
         await axios.delete(url)

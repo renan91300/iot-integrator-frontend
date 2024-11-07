@@ -4,6 +4,8 @@ import PrivateRoute from "./components/privateRoutes";
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import Dashboard from './pages/Dashboard';
+import Dispositivos from './pages/Dispositivos';
+import Categorias from './pages/Categorias';
 
 function App() {
 
@@ -18,7 +20,8 @@ function App() {
             }
           >
             <Route index element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-            {/* <Route path="dispositivos" element={<Dispositivos />} /> */}
+            <Route path="dispositivos" element={<PrivateRoute><Dispositivos /></PrivateRoute>} />
+            <Route path="categorias" element={<PrivateRoute><Categorias /></PrivateRoute>}></Route>
           </Route>
       </Routes>
     </Router>

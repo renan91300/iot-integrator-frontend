@@ -13,7 +13,7 @@ const PrivateRoute = ({ children }) => {
         return decodedToken.exp > now;
     };
 
-    return isAuthenticated() ? <>{children}</> : <Navigate replace to='/' />;
+    return isAuthenticated() ? <>{children}</> : <Navigate replace to='/login' />;
 };
 
 export default PrivateRoute;

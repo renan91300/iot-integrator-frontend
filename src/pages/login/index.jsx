@@ -25,7 +25,7 @@ export default function LoginScreen() {
             .then((res) => {
                 localStorage.setItem("accesstoken", res.access);
                 localStorage.setItem("refreshtoken", res.refresh);
-                navigate("/menu")
+                navigate("/")
             })
             .catch((err) => {
                 setButtonText("Entrar");
