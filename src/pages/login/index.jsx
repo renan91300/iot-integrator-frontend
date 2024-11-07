@@ -37,7 +37,7 @@ export default function LoginScreen() {
         if (AccessToken) {
             validateToken(AccessToken)
                 .then(() => {
-                    navigate("/menu")
+                    navigate("/")
                 })
                 .catch(() => {
                     localStorage.removeItem("accesstoken");
