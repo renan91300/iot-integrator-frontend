@@ -6,7 +6,7 @@ import './Relatorio.css'
 import GerardadosDispo from "../components/layout/GerardadosDispo";
 import CadDispo from "./CadDispo"
 import { fetchDevices } from "../services/users";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 const Dispotivos = () => {
     const [dispositivos, setDispositivos] = useState([]);
@@ -35,8 +35,8 @@ const Dispotivos = () => {
 
     return (
         <>
+            <ToastContainer/>
             <h1>Relatório de Dispositivos</h1>
-            <CadDispo />
             <hr style={{ width: "45vw" }}></hr>
             <Table responsive variant="dark" className="noWrap">
                 <thead>

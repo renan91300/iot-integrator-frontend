@@ -6,6 +6,7 @@ import Layout from './components/layout/Layout';
 import Dashboard from './pages/Dashboard';
 import Dispositivos from './pages/Dispositivos';
 import Categorias from './pages/Categorias';
+import FormCategoria from './pages/FormCategoria';
 
 function App() {
 
@@ -22,6 +23,8 @@ function App() {
             <Route index element={<PrivateRoute><Dashboard /></PrivateRoute>} />
             <Route path="dispositivos" element={<PrivateRoute><Dispositivos /></PrivateRoute>} />
             <Route path="categorias" element={<PrivateRoute><Categorias /></PrivateRoute>}></Route>
+            <Route path="categorias/:id" element={<PrivateRoute><FormCategoria /></PrivateRoute>}></Route>
+            <Route path="cadastrar_categoria" element={<PrivateRoute><FormCategoria /></PrivateRoute>}></Route>
           </Route>
       </Routes>
     </Router>

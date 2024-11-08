@@ -20,9 +20,15 @@ axios.interceptors.response.use(
             console.log(error);
             LogEvent("Usuário sem permissão para executar a ação", { url, params, method });
         }
+        // if (error.response && error.response.status === 401) {
+        //     localStorage.removeItem("accesstoken");
+        //     localStorage.removeItem("refreshtoken");
+        //     window.location.href = "/login";
+        // }
         return Promise.reject(error);
     }
 );
+
 
 export async function fetchUsers() {
     const UserList = await axios.get(`${url}/auth/users/`, {
@@ -46,18 +52,52 @@ export async function patchUser(user) {
     return newUser.data;
 }
 
-export async function fetchDevices(project_id) {
+export async function fetchDevices(projectId) {
     const DeviceList = await axios.get(`${url}/device/`, {
-        params: { project_id: project_id },
+        params: { project_id: projectId },
         headers: config.headers,
     });
     return DeviceList.data;
 }
 
-export async function fetchCategories(project_id) {
+export async function fetchCategories(projectId) {
     const CategoryList = await axios.get(`${url}/category/`, {
-        params: { project_id: project_id },
+        params: { project_id: projectId },
         headers: config.headers,
     });
     return CategoryList.data;
+}
+
+export async function fetchCategoryById(idCategory, projectId) {
+    const params = { project_id: projectId };
+    const Category = await axios.get(`${url}/category/${idCategory}/`, {
+        headers: config.headers,
+        params: params,
+
+    });
+    return Category.data;
+}
+
+export async function createCategory(category) {
+    const newCategory = await axios.post(`${url}/category/`, category, config);
+    return newCategory.data;
+}
+
+export async function updateCategory(category) {
+    const idCategory = category.id;
+    const params = { project_id: category.project };
+    const newCategory = await axios.patch(`${url}/category/${idCategory}/`, category, {
+        headers: config.headers,
+        params: params
+    });
+    return newCategory.data;
+}
+
+export async function deleteCategory(idCategory, projectId) {
+    const params = { project_id: projectId };
+    const Category = await axios.delete(`${url}/category/${idCategory}/`, {
+        headers: config.headers,
+        params: params
+    });
+    return Category.data;
 }

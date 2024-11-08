@@ -1,23 +1,28 @@
-import React, { Component, useEffect, useState } from "react"
-import 'bootstrap/dist/css/bootstrap.min.css'
-import { Table } from "react-bootstrap";
-import CadastroDispositivos from './CadastroDispositivos'
-import './Relatorio.css'
-import GerardadosDispo from "../components/layout/GerardadosDispo";
-import CadDispo from "./CadDispo"
-import { fetchCategories } from "../services/users";
+import React, { useEffect, useState } from "react"
+import { Button, OverlayTrigger, Table, Tooltip } from "react-bootstrap";
+import { deleteCategory, fetchCategories } from "../services/users";
 import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import ModalConfirm from "../components/ModalConfirm";
 
 const Categorias = () => {
     const [categorias, setCategorias] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [showModal, setShowModal] = useState(false);
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
-    // TODO: save localProjectId in sessionStorage
-    const localProjectId = sessionStorage.getItem("localProjectId")
+    // const localProjectId = sessionStorage.getItem("localProjectId")
+    const localProjectId = 1; // MOCK - Remover quando implementar projetos
+    
+    const getJsonPreview = (json) => {
+        const jsonString = JSON.stringify(json);
+        return jsonString.length > 50 ? `${jsonString.substring(0, 50)}...` : jsonString;
+    };
 
     function fetch() {
         setLoading(true);
-        fetchCategories(localProjectId)
+        fetchCategories(1)
         .then((res) => {
             setCategorias(res);
         })
@@ -28,15 +33,52 @@ const Categorias = () => {
 
     }
 
+    function handleDeleteCategory(id) {
+        setSelectedCategory(id);
+        setShowModal(true);
+    }
+
+    function handleEdit(id) {
+        navigate(`/categorias/${id}`);
+    }
+
+    function localDeleteCategory(id) {
+        deleteCategory(id, localProjectId)
+        .then(() => {
+            toast.success("Categoria excluída com sucesso");
+            fetch();
+        })
+        .catch((err) => {
+            console.log(err);
+            toast.error("Algo deu errado ao excluir a categoria");
+            const error = err.response.data.error;
+            if (error){
+                toast.error(error);
+            }
+        })
+    }
+
     useEffect(() => {
         fetch();
     }, []);
 
-
     return (
         <>
             <ToastContainer/>
+            <ModalConfirm
+                show={showModal}
+                question="Tem certeza que deseja excluir a categoria?"
+                confirmAction={() => {
+                    localDeleteCategory(selectedCategory);
+                    setShowModal(false);
+                }}
+                cancelAction={() => setShowModal(false)}
+                handleClose={() => setShowModal(false)}
+            />
             <h1>Categorias</h1>
+            <Button variant="btn btn-primary" onClick={() => navigate("/cadastrar_categoria")}>
+                Adicionar categoria
+            </Button>
             <hr style={{ width: "45vw" }}></hr>
             <Table responsive variant="striped" className="noWrap">
                 <thead>
@@ -53,11 +95,20 @@ const Categorias = () => {
                         <tr key={index}>
                             <td>{index + 1}</td>
                             <td>{categoria.name}</td>
-                            <td>{categoria.base_configuration}</td>
                             <td>
-                                <button className="btn btn-outline-danger btn-sm" onClick={() => {}}>Editar</button>
+                                <OverlayTrigger
+                                    placement="top"
+                                    overlay={<Tooltip>{JSON.stringify(categoria.base_settings)}</Tooltip>}
+                                >
+                                    <span>{getJsonPreview(categoria.base_settings)}</span>
+                                </OverlayTrigger>
                             </td>
-                            <td></td>
+                            <td>
+                                <button className="btn btn-outline-primary btn-sm" onClick={() => {handleEdit(categoria.id)}}>Editar</button>
+                            </td>
+                            <td>
+                                <button className="btn btn-outline-danger btn-sm" onClick={() => {handleDeleteCategory(categoria.id)}}>Excluir</button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

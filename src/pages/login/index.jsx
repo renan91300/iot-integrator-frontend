@@ -11,6 +11,7 @@ import Button from 'react-bootstrap/Button';
 import './styles.css';
 
 import { generateTokens, validateToken } from "../../services/authentication";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function LoginScreen() {
     const navigate = useNavigate();
@@ -20,6 +21,7 @@ export default function LoginScreen() {
     const AccessToken = localStorage.getItem("accesstoken");
 
     function login() {
+        event.preventDefault();
         setButtonText("Aguarde um momento...");
         generateTokens({ email: Email, password: Password })
             .then((res) => {
@@ -56,13 +58,13 @@ export default function LoginScreen() {
         <div className="App" style={{ backgroundImage: `url(/src/assets/logo.jpeg)` }}>
 
             <>
+                <ToastContainer/>
                 <Header />
                 <br />
                 <br />
-                <Container>
-                    <br />
+                <Container className="p-3">
                     <h2 className="titulo">Fazer Login</h2>
-                    <Form>
+                    <Form onSubmit={login}>
                         <Form.Label className="label" column sm="2">
                             Email
                         </Form.Label>
@@ -80,11 +82,9 @@ export default function LoginScreen() {
                                 <Form.Control name="senha" type="password" placeholder="Senha" value={Password} onChange={(e) => setPassword(e.target.value)} />
                             </Col>
                         </Form.Group>
-                        <>
-                            <Button className="botao" variant="primary" size="lg" active onClick={() => login()}>
-                                {ButtonText}
-                            </Button>
-                        </>
+                        <Button className="btn btn-primary" type="submit">
+                            {ButtonText}
+                        </Button>
 
                     </Form>
                 </Container>
