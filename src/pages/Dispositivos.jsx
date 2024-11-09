@@ -1,10 +1,5 @@
-import React, { Component, useEffect, useState } from "react"
-import 'bootstrap/dist/css/bootstrap.min.css'
+import React, { useEffect, useState } from "react"
 import { Table } from "react-bootstrap";
-import CadastroDispositivos from './CadastroDispositivos'
-import './Relatorio.css'
-import GerardadosDispo from "../components/layout/GerardadosDispo";
-import CadDispo from "./CadDispo"
 import { fetchDevices } from "../services/users";
 import { toast, ToastContainer } from "react-toastify";
 

@@ -7,25 +7,27 @@ import Dashboard from './pages/Dashboard';
 import Dispositivos from './pages/Dispositivos';
 import Categorias from './pages/Categorias';
 import FormCategoria from './pages/FormCategoria';
+import Projetos from './pages/Projetos';
 
 function App() {
 
   return (
     <Router>
       <Routes>
-        <Route path='/login' element={<Login />} />        
-          <Route
-            path="/"
-            element={
-              <Layout />
-            }
-          >
-            <Route index element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-            <Route path="dispositivos" element={<PrivateRoute><Dispositivos /></PrivateRoute>} />
-            <Route path="categorias" element={<PrivateRoute><Categorias /></PrivateRoute>}></Route>
-            <Route path="categorias/:id" element={<PrivateRoute><FormCategoria /></PrivateRoute>}></Route>
-            <Route path="cadastrar_categoria" element={<PrivateRoute><FormCategoria /></PrivateRoute>}></Route>
-          </Route>
+        <Route path='/login' element={<Login />} />
+        <Route
+          path="/"
+          element={
+            <Layout />
+          }
+        >
+          <Route index element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+          <Route path="dispositivos" element={<PrivateRoute><Dispositivos /></PrivateRoute>} />
+          <Route path="categorias" element={<PrivateRoute><Categorias /></PrivateRoute>}></Route>
+          <Route path="categorias/:id" element={<PrivateRoute><FormCategoria /></PrivateRoute>}></Route>
+          <Route path="cadastrar_categoria" element={<PrivateRoute><FormCategoria /></PrivateRoute>}></Route>
+        </Route>
+        <Route path="projetos" element={<PrivateRoute><Projetos /></PrivateRoute>}></Route>
       </Routes>
     </Router>
   )

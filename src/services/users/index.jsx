@@ -68,9 +68,9 @@ export async function fetchCategories(projectId) {
     return CategoryList.data;
 }
 
-export async function fetchCategoryById(idCategory, projectId) {
+export async function fetchCategoryById(categoryId, projectId) {
     const params = { project_id: projectId };
-    const Category = await axios.get(`${url}/category/${idCategory}/`, {
+    const Category = await axios.get(`${url}/category/${categoryId}/`, {
         headers: config.headers,
         params: params,
 
@@ -84,20 +84,77 @@ export async function createCategory(category) {
 }
 
 export async function updateCategory(category) {
-    const idCategory = category.id;
+    const categoryId = category.id;
     const params = { project_id: category.project };
-    const newCategory = await axios.patch(`${url}/category/${idCategory}/`, category, {
+    const newCategory = await axios.patch(`${url}/category/${categoryId}/`, category, {
         headers: config.headers,
         params: params
     });
     return newCategory.data;
 }
 
-export async function deleteCategory(idCategory, projectId) {
+export async function deleteCategory(categoryId, projectId) {
     const params = { project_id: projectId };
-    const Category = await axios.delete(`${url}/category/${idCategory}/`, {
+    const Category = await axios.delete(`${url}/category/${categoryId}/`, {
         headers: config.headers,
         params: params
     });
     return Category.data;
+}
+
+export async function fetchLocationById(locationId, projectId) {
+    const params = { project_id: projectId };
+    const Location = await axios.get(`${url}/location/${locationId}/`, {
+        headers: config.headers,
+        params: params,
+
+    });
+    return Location.data;
+}
+
+export async function createLocation(location) {
+    const newLocation = await axios.post(`${url}/location/`, location, config);
+    return newLocation.data;
+}
+
+export async function updateLocation(location) {
+    const locationId = location.id;
+    const params = { project_id: category.project };
+    const newLocation = await axios.patch(`${url}/location/${locationId}/`, location, {
+        headers: config.headers,
+        params: params
+    });
+    return newLocation.data;
+}
+
+export async function deleteLocation(locationId, projectId) {
+    const params = { project_id: projectId };
+    const Location = await axios.delete(`${url}/location/${locationId}/`, {
+        headers: config.headers,
+        params: params
+    });
+    return Location.data;
+}
+
+export async function fetchProjects() {
+    const ProjectList = await axios.get(`${url}/project/`, {
+        headers: config.headers,
+    });
+    return ProjectList.data;
+}
+
+export async function createProject(project) {
+    const newProject = await axios.post(`${url}/project/`, project, config);
+    return newProject.data;
+}
+
+export async function updateProject(project) {
+    const projectId = project.id;
+    const newProject = await axios.patch(`${url}/project/${projectId}/`, project, config);
+    return newProject.data;
+}
+
+export async function deleteProject(projectId) {
+    const Project = await axios.delete(`${url}/project/${projectId}/`, config);
+    return Project.data;
 }

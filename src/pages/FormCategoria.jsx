@@ -21,7 +21,7 @@ const FormCategoria = () => {
     // const localProjectId = sessionStorage.getItem("localProjectId");
     const localProjectId = 1; // MOCK - Remover quando implementar projetos
 
-    const idCategory = useParams().id;
+    const categoryId = useParams().id;
 
     const localHandleJsonChange = (event) => {
         handleJsonChange(event, inputs, setInputs, setError);
@@ -31,11 +31,11 @@ const FormCategoria = () => {
         handleChange(event, inputs, setInputs);
     }
 
-    function loadCategoryById(idCategory) {
+    function loadCategoryById(categoryId) {
         setLoading(true);
-        fetchCategoryById(idCategory, localProjectId)
+        fetchCategoryById(categoryId, localProjectId)
             .then((response) => {
-                setInputs({ ...inputs, id: idCategory, project: localProjectId, name: response.name, base_settings: JSON.stringify(response.base_settings, null, 2) });
+                setInputs({ ...inputs, id: categoryId, project: localProjectId, name: response.name, base_settings: JSON.stringify(response.base_settings, null, 2) });
             })
             .catch((err) => {
                 console.log(err);
@@ -59,7 +59,7 @@ const FormCategoria = () => {
             base_settings: JSON.parse(inputs?.base_settings),
             project: inputs?.project
         }
-        if (idCategory) {
+        if (categoryId) {
             // Update
             updateCategory(data)
                 .then(() => {
@@ -84,17 +84,17 @@ const FormCategoria = () => {
     }
 
     useEffect(() => {
-        setInputs({ ...inputs, id: idCategory, project: localProjectId });
-        if (idCategory) {
-            loadCategoryById(idCategory);
+        setInputs({ ...inputs, id: categoryId, project: localProjectId });
+        if (categoryId) {
+            loadCategoryById(categoryId);
         }
-    }, [idCategory]);
+    }, [categoryId]);
 
     return (
         <>
             <ToastContainer />
             {loading && <div>Carregando...</div>}
-            <h1>{idCategory ? "Editar" : "Adicionar"} uma nova categoria</h1>
+            <h1>{categoryId ? "Editar" : "Adicionar"} uma nova categoria</h1>
             <hr style={{ width: "45vw" }}></hr>
             <div className="">
                 <Form onSubmit={handleSubmit}>
