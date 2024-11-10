@@ -1,56 +1,56 @@
-.titulo{
-    text-align: center!important;
-    display: inline-block!important;
-    
+.titulo {
+    text-align: center !important;
+    display: inline-block !important;
+
 }
 
-.container{
-    border: 1px solid rgba(0,0,0,.2)!important;
+.container {
+    border: 1px solid rgba(0, 0, 0, .2) !important;
     border-radius: 25px !important;
-    box-shadow: 0 0px 20px rgba(0,0,0,.2);
-    width: 350px!important;
-    display: block!important;
-    text-align: center!important;
-    justify-content: center!important;
+    box-shadow: 0 0px 20px rgba(0, 0, 0, .2);
+    width: 350px !important;
+    display: block !important;
+    text-align: center !important;
+    justify-content: center !important;
     background-color: white !important;
 }
 
-.navbar{
-    padding-left: 15px!important;
+.navbar {
+    padding-left: 15px !important;
 }
 
-.navbar-brand{
-    padding-left: 5px!important;
+.navbar-brand {
+    padding-left: 5px !important;
 }
 
-.texto{
+.texto {
     justify-content: left !important;
 }
 
-.op{
+.op {
     text-align: left;
 }
 
-.botao{
+.botao {
     margin-bottom: 15px;
-    background-color: #4169E1!important;
+    background-color: #4169E1 !important;
 }
 
-.botao:hover{
-    background-color: white!important;
-    color: #4169e1!important;
+.botao:hover {
+    background-color: white !important;
+    color: #4169e1 !important;
 }
 
-.botao2{
+.botao2 {
     margin-bottom: 15px;
-    background-color: #e24048!important;
+    background-color: #e24048 !important;
     --bs-btn-color: #fff;
     --bs-btn-bg: #df1e1e;
     --bs-btn-border-color: #d82525;
     --bs-btn-hover-color: #fff;
     --bs-btn-hover-bg: #ca1d1d;
     --bs-btn-hover-border-color: #c71a1aee;
-    --bs-btn-focus-shadow-rgb: 49,132,253;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
     --bs-btn-active-color: #fff;
     --bs-btn-active-bg: #c71a1aee;
     --bs-btn-active-border-color: #b91f1f;
@@ -60,7 +60,7 @@
     --bs-btn-disabled-border-color: #c91a1a;
 }
 
-.botao2:hover{
-    background-color: white!important;
-    color: #e24048!important;
+.botao2:hover {
+    background-color: white !important;
+    color: #e24048 !important;
 }

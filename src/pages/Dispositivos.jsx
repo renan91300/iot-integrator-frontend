@@ -7,19 +7,18 @@ const Dispotivos = () => {
     const [dispositivos, setDispositivos] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    // TODO: save localProjectId in sessionStorage
     const localProjectId = sessionStorage.getItem("localProjectId")
 
     function fetch() {
         setLoading(true);
         fetchDevices(localProjectId)
-        .then((res) => {
-            setDispositivos(res);
-        })
-        .catch((err) => {
-            console.log(err);
-            toast.error("Algo deu errado ao buscar os dispositivos");
-        })
+            .then((res) => {
+                setDispositivos(res);
+            })
+            .catch((err) => {
+                console.log(err);
+                toast.error("Algo deu errado ao buscar os dispositivos");
+            })
 
     }
 
@@ -30,7 +29,7 @@ const Dispotivos = () => {
 
     return (
         <>
-            <ToastContainer/>
+            <ToastContainer />
             <h1>Relatório de Dispositivos</h1>
             <hr style={{ width: "45vw" }}></hr>
             <Table responsive variant="dark" className="noWrap">

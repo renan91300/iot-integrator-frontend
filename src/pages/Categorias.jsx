@@ -12,9 +12,8 @@ const Categorias = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    // const localProjectId = sessionStorage.getItem("localProjectId")
-    const localProjectId = 1; // MOCK - Remover quando implementar projetos
-    
+    const localProjectId = sessionStorage.getItem("localProjectId")
+
     const getJsonPreview = (json) => {
         const jsonString = JSON.stringify(json);
         return jsonString.length > 50 ? `${jsonString.substring(0, 50)}...` : jsonString;
@@ -22,14 +21,14 @@ const Categorias = () => {
 
     function fetch() {
         setLoading(true);
-        fetchCategories(1)
-        .then((res) => {
-            setCategorias(res);
-        })
-        .catch((err) => {
-            console.log(err);
-            toast.error("Algo deu errado ao buscar as categorias");
-        })
+        fetchCategories(localProjectId)
+            .then((res) => {
+                setCategorias(res);
+            })
+            .catch((err) => {
+                console.log(err);
+                toast.error("Algo deu errado ao buscar as categorias");
+            })
 
     }
 
@@ -44,18 +43,18 @@ const Categorias = () => {
 
     function localDeleteCategory(id) {
         deleteCategory(id, localProjectId)
-        .then(() => {
-            toast.success("Categoria excluída com sucesso");
-            fetch();
-        })
-        .catch((err) => {
-            console.log(err);
-            toast.error("Algo deu errado ao excluir a categoria");
-            const error = err.response.data.error;
-            if (error){
-                toast.error(error);
-            }
-        })
+            .then(() => {
+                toast.success("Categoria excluída com sucesso");
+                fetch();
+            })
+            .catch((err) => {
+                console.log(err);
+                toast.error("Algo deu errado ao excluir a categoria");
+                const error = err.response.data.error;
+                if (error) {
+                    toast.error(error);
+                }
+            })
     }
 
     useEffect(() => {
@@ -64,7 +63,7 @@ const Categorias = () => {
 
     return (
         <>
-            <ToastContainer/>
+            <ToastContainer />
             <ModalConfirm
                 show={showModal}
                 question="Tem certeza que deseja excluir a categoria?"
@@ -104,10 +103,10 @@ const Categorias = () => {
                                 </OverlayTrigger>
                             </td>
                             <td>
-                                <button className="btn btn-outline-primary btn-sm" onClick={() => {handleEdit(categoria.id)}}>Editar</button>
+                                <button className="btn btn-outline-primary btn-sm" onClick={() => { handleEdit(categoria.id) }}>Editar</button>
                             </td>
                             <td>
-                                <button className="btn btn-outline-danger btn-sm" onClick={() => {handleDeleteCategory(categoria.id)}}>Excluir</button>
+                                <button className="btn btn-outline-danger btn-sm" onClick={() => { handleDeleteCategory(categoria.id) }}>Excluir</button>
                             </td>
                         </tr>
                     ))}

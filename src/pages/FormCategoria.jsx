@@ -18,8 +18,7 @@ const FormCategoria = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    // const localProjectId = sessionStorage.getItem("localProjectId");
-    const localProjectId = 1; // MOCK - Remover quando implementar projetos
+    const localProjectId = sessionStorage.getItem("localProjectId");
 
     const categoryId = useParams().id;
 
@@ -52,7 +51,7 @@ const FormCategoria = () => {
             setError('JSON inválido. Verifique a sintaxe.');
             return;
         }
-        
+
         const data = {
             id: inputs?.id,
             name: inputs?.name,

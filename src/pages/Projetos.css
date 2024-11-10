@@ -1,0 +1,42 @@
+.project-card {
+  background-color: "white";
+  /* width: 350px; */
+  /* height: 300px; */
+  height: 100px;
+  width: 80%;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 100ms linear;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+  box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.project-card:hover {
+  transform: scale(1.05);
+}
+
+.project-card-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.projects-container {
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 25px;
+  box-shadow: 0 0px 20px rgba(0, 0, 0, .2);
+}
+
+.tooltip-inner {
+  max-width: 1000px !important;
+}
