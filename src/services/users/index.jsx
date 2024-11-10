@@ -1,16 +1,24 @@
 import axios from "axios";
 
 const url = import.meta.env.VITE_API_URL;
-const accesstoken = localStorage.getItem("accesstoken");
 
 const config = {
     headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Authorization: `JWT ${accesstoken}`,
     },
 };
 
+axios.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem("accesstoken");
+        if (token) {
+            config.headers["Authorization"] = `JWT ${token}`;
+        }
+        return config;
+    },
+    (error) => Promise.reject(error)
+);
 
 axios.interceptors.response.use(
     (response) => response,
@@ -20,11 +28,11 @@ axios.interceptors.response.use(
             console.log(error);
             LogEvent("Usuário sem permissão para executar a ação", { url, params, method });
         }
-        // if (error.response && error.response.status === 401) {
-        //     localStorage.removeItem("accesstoken");
-        //     localStorage.removeItem("refreshtoken");
-        //     window.location.href = "/login";
-        // }
+        if (error.response && error.response.status === 401) {
+            localStorage.removeItem("accesstoken");
+            localStorage.removeItem("refreshtoken");
+            window.location.href = "/login";
+        }
         return Promise.reject(error);
     }
 );

@@ -27,7 +27,7 @@ export default function LoginScreen() {
             .then((res) => {
                 localStorage.setItem("accesstoken", res.access);
                 localStorage.setItem("refreshtoken", res.refresh);
-                navigate("/")
+                navigate("/projetos")
             })
             .catch((err) => {
                 setButtonText("Entrar");
@@ -58,7 +58,7 @@ export default function LoginScreen() {
         <div className="App" style={{ backgroundImage: `url(/src/assets/logo.jpeg)` }}>
 
             <>
-                <ToastContainer/>
+                <ToastContainer />
                 <Header />
                 <br />
                 <br />
