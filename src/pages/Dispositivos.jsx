@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react"
-import { Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import { fetchDevices } from "../services/users";
 import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Dispotivos = () => {
     const [dispositivos, setDispositivos] = useState([]);
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     const localProjectId = sessionStorage.getItem("localProjectId")
 
@@ -31,6 +33,9 @@ const Dispotivos = () => {
         <>
             <ToastContainer />
             <h1>Relatório de Dispositivos</h1>
+            <Button variant="btn btn-primary" onClick={() => navigate("/cadastrar_dispositivo")}>
+                Adicionar Dispositivo
+            </Button>
             <hr style={{ width: "45vw" }}></hr>
             <Table responsive variant="dark" className="noWrap">
                 <thead>

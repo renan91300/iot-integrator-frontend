@@ -110,12 +110,19 @@ export async function deleteCategory(categoryId, projectId) {
     return Category.data;
 }
 
+export async function fetchLocations(projectId) {
+    const LocationList = await axios.get(`${url}/location/`, {
+        params: { project_id: projectId },
+        headers: config.headers,
+    });
+    return LocationList.data;
+}
+
 export async function fetchLocationById(locationId, projectId) {
     const params = { project_id: projectId };
     const Location = await axios.get(`${url}/location/${locationId}/`, {
         headers: config.headers,
         params: params,
-
     });
     return Location.data;
 }
@@ -125,9 +132,9 @@ export async function createLocation(location) {
     return newLocation.data;
 }
 
-export async function updateLocation(location) {
+export async function updateLocation(location, projectId) {
     const locationId = location.id;
-    const params = { project_id: category.project };
+    const params = { project_id: projectId };
     const newLocation = await axios.patch(`${url}/location/${locationId}/`, location, {
         headers: config.headers,
         params: params

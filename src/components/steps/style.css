@@ -1,0 +1,51 @@
+.step-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    /* Largura aumentada para ocupar mais espaço */
+    max-width: 600px;
+    /* Largura máxima para telas maiores */
+    margin: 0 auto;
+    margin-bottom: 20px;
+    /* Centralizar o componente */
+}
+
+.step {
+    width: 35px;
+    /* Círculo ligeiramente maior */
+    height: 35px;
+    border-radius: 50%;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.step.completed {
+    background-color: #4caf50;
+    color: white;
+}
+
+.step.current {
+    background-color: #007bff;
+    color: white;
+}
+
+.step-line {
+    height: 4px;
+    flex-grow: 1;
+    /* Faz com que as linhas se expandam automaticamente */
+    background-color: #ddd;
+    transition: background-color 0.3s ease;
+    margin: 0 5px;
+    /* Espaçamento entre a linha e os círculos */
+}
+
+.step-line.completed-line {
+    background-color: #4caf50;
+}
