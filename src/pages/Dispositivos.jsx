@@ -37,20 +37,36 @@ const Dispotivos = () => {
                 Adicionar Dispositivo
             </Button>
             <hr style={{ width: "45vw" }}></hr>
-            <Table responsive variant="dark" className="noWrap">
+            <Table responsive variant="striped">
                 <thead>
                     <tr>
-                        <th>#</th>
                         <th>Nome</th>
-                        <th>Hash</th>
-                        <th>Descrição</th>
+                        <th>Localização</th>
+                        <th>Categoria</th>
+                        <th>Status</th>
                         <th>Editar</th>
                         <th>Excluir</th>
                     </tr>
                 </thead>
-                <tbody id="corpo">
-                    <>
-                    </>
+                <tbody>
+                    {dispositivos.map((dispositivo) => (
+                        <tr key={dispositivo.id}>
+                            <td>{dispositivo.name}</td>
+                            <td>{dispositivo.location_name}</td>
+                            <td>{dispositivo.category_name}</td>
+                            <td>{dispositivo.status?.field_name}: {dispositivo.status?.field_value}</td>
+                            <td>
+                                <Button variant="btn btn-primary" onClick={() => navigate(`/editar_dispositivo/${dispositivo.id}`)}>
+                                    Editar
+                                </Button>
+                            </td>
+                            <td>
+                                <Button variant="btn btn-danger" onClick={() => navigate(`/excluir_dispositivo/${dispositivo.id}`)}>
+                                    Excluir
+                                </Button>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </Table>
         </>

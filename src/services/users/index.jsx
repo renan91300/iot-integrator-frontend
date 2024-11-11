@@ -68,6 +68,24 @@ export async function fetchDevices(projectId) {
     return DeviceList.data;
 }
 
+export async function fetchDeviceById(deviceId, projectId) {
+    const params = { project_id: projectId };
+    const Device = await axios.get(`${url}/device/${deviceId}/`, {
+        headers: config.headers,
+        params: params,
+    });
+    return Device.data;
+}
+
+export async function createDevice(device) {
+    const params = { project_id: device.project };
+    const newDevice = await axios.post(`${url}/device/`, device, {
+        headers: config.headers,
+        params: params
+    });
+    return newDevice.data;
+}
+
 export async function fetchCategories(projectId) {
     const CategoryList = await axios.get(`${url}/category/`, {
         params: { project_id: projectId },

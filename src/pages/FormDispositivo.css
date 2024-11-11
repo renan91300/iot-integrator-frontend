@@ -1,0 +1,23 @@
+.carousel-field-group {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 15px;
+    background-color: #f8f9fa;
+  }
+  
+  .carousel-field-group h5 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .carousel-field-group .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .carousel-field-group .btn {
+    width: 48%;
+  }
+  

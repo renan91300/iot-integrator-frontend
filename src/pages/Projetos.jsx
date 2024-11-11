@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Card, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Card, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { createProject, fetchProjects } from '../services/users';
 import { useNavigate } from 'react-router-dom';
 import './Projetos.css';
