@@ -150,9 +150,9 @@ export async function createLocation(location) {
     return newLocation.data;
 }
 
-export async function updateLocation(location, projectId) {
+export async function updateLocation(location) {
     const locationId = location.id;
-    const params = { project_id: projectId };
+    const params = { project_id: location.project };
     const newLocation = await axios.patch(`${url}/location/${locationId}/`, location, {
         headers: config.headers,
         params: params

@@ -9,6 +9,8 @@ import FormDispositivo from './pages/FormDispositivo';
 import Categorias from './pages/Categorias';
 import FormCategoria from './pages/FormCategoria';
 import Projetos from './pages/Projetos';
+import Localidades from './pages/Localidades';
+import FormLocalidade from './pages/FormLocalidade';
 
 function App() {
 
@@ -29,6 +31,9 @@ function App() {
           <Route path="categorias" element={<PrivateRoute><Categorias /></PrivateRoute>}></Route>
           <Route path="categorias/:id" element={<PrivateRoute><FormCategoria /></PrivateRoute>}></Route>
           <Route path="cadastrar_categoria" element={<PrivateRoute><FormCategoria /></PrivateRoute>}></Route>
+          <Route path="localidades" element={<PrivateRoute><Localidades /></PrivateRoute>}></Route>
+          <Route path="localidades/:id" element={<PrivateRoute><FormLocalidade /></PrivateRoute>}></Route>
+          <Route path="cadastrar_localidade" element={<PrivateRoute><FormLocalidade /></PrivateRoute>}></Route>
         </Route>
         <Route path="projetos" element={<PrivateRoute><Projetos /></PrivateRoute>}></Route>
       </Routes>
