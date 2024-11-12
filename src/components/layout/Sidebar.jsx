@@ -27,8 +27,8 @@ const Sidebar = () => {
         <Nav.Link as={NavLink} to="/localidades">
           Localidades
         </Nav.Link>
-        <Nav.Link as={NavLink} to="/participantes">
-          Participantes
+        <Nav.Link as={NavLink} to="/membros">
+          Membros
         </Nav.Link>
         <Button variant="danger" className="logout-button" onClick={handleLogout}>
             Sair

@@ -11,6 +11,7 @@ import FormCategoria from './pages/FormCategoria';
 import Projetos from './pages/Projetos';
 import Localidades from './pages/Localidades';
 import FormLocalidade from './pages/FormLocalidade';
+import Membros from './pages/Membros';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
           <Route path="localidades" element={<PrivateRoute><Localidades /></PrivateRoute>}></Route>
           <Route path="localidades/:id" element={<PrivateRoute><FormLocalidade /></PrivateRoute>}></Route>
           <Route path="cadastrar_localidade" element={<PrivateRoute><FormLocalidade /></PrivateRoute>}></Route>
+          <Route path="membros" element={<PrivateRoute><Membros /></PrivateRoute>}></Route>
         </Route>
         <Route path="projetos" element={<PrivateRoute><Projetos /></PrivateRoute>}></Route>
       </Routes>
