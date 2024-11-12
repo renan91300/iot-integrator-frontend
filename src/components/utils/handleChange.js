@@ -3,7 +3,8 @@ function handleChange(event, inputs, setInputs) {
         const value = event.target.checked === true;
         const name = event.target.name;
         setInputs({ ...inputs, [name]: value });
-    } else {
+    } 
+    else {
         //rawValue é o valor sem máscara e value é o valor com máscara
         const value = event.target.rawValue ? event.target.rawValue : event.target.value;
         const name = event.target.name;

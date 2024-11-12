@@ -86,6 +86,16 @@ export async function createDevice(device) {
     return newDevice.data;
 }
 
+export async function updateDevice(device) {
+    const deviceId = device.id;
+    const params = { project_id: device.project };
+    const newDevice = await axios.patch(`${url}/device/${deviceId}/`, device, {
+        headers: config.headers,
+        params: params
+    });
+    return newDevice.data;
+}
+
 export async function fetchCategories(projectId) {
     const CategoryList = await axios.get(`${url}/category/`, {
         params: { project_id: projectId },
@@ -190,4 +200,18 @@ export async function updateProject(project) {
 export async function deleteProject(projectId) {
     const Project = await axios.delete(`${url}/project/${projectId}/`, config);
     return Project.data;
+}
+
+export async function fetchMembers(projectId) {
+    const params = { project_id: projectId };
+    const Members = await axios.get(`${url}/project/members/`, {
+        headers: config.headers,
+        params: params,
+    });
+    return Members.data;
+}
+
+export async function sendInvitation(invitation) {
+    const newInvitation = await axios.post(`${url}/invitation/`, invitation, config);
+    return newInvitation.data;
 }

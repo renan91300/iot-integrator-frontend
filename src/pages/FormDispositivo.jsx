@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Button, Form } from "react-bootstrap";
-import { fetchCategories, fetchLocations, createProject, createDevice } from "../services/users";
+import { fetchCategories, fetchLocations, createDevice, updateDevice, fetchDeviceById } from "../services/users";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import StepIndicator from "../components/steps";
@@ -13,14 +13,24 @@ const FormDispositivo = () => {
         id: null,
         name: '',
         base_settings: '',
-        project: null
+        project: null,
+        status_check: false,
+        status_name: '',
+        status_type: '',
+        status_min: '',
+        status_max: '',
+        status_on: '',
+        status_off: '',
+        category: null,
+        location: null,
+        config: '',
+
     });
     // const [jsonInput, setJsonInput] = useState('');
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [categories, setCategories] = useState([]);
     const [locations, setLocations] = useState([]);
-    const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
     const [step, setStep] = useState(1);
     const [fieldCarouselIndex, setFieldCarouselIndex] = useState(0); // Índice do campo atual no "carousel"
     const [fieldCount, setFieldCount] = useState(0); // Número de campos a serem preenchidos
@@ -51,6 +61,19 @@ const FormDispositivo = () => {
         handleChange(event, inputs, setInputs);
     }
 
+    const handleSelectChange = (event) => {
+        // update category and location
+        const { name, value } = event.target;
+        if (name === 'category') {
+            const category = categories.find((category) => category.id == value);
+            setInputs({ ...inputs, category: category });
+        } else {
+            const location = locations.find((location) => location.id == value);
+            setInputs({ ...inputs, location: location });
+        }
+        console.log(inputs);
+    }
+
     function loadCategories() {
         fetchCategories(localProjectId)
             .then((res) => {
@@ -73,14 +96,40 @@ const FormDispositivo = () => {
             });
     }
 
-    function handleSelectChange(event) {
-        setSelectedCategoryIndex(event.target.value);
-        if (event.target.value === "0") {
-            setInputs({ ...inputs, config: '', category: '' });
-            return;
-        }
-        setInputs({ ...inputs, config: JSON.stringify(categories[event.target.value - 1].base_settings, null, 2), category: categories[event.target.value - 1].id });
+    function loadDeviceById(deviceId) {
+        setLoading(true);
+        fetchDeviceById(deviceId, localProjectId)
+            .then((res) => {
+                setInputs(
+                    { 
+                        ...inputs, 
+                        id: deviceId, 
+                        name: res.name, 
+                        location: res.location, 
+                        category: res.category, 
+                        project: res.project,
+                        config: JSON.stringify(res.config, null, 2), 
+                        status_check: Object.keys(res.status).length > 0 ? true : false, 
+                        status_name: res.status?.field_name, 
+                        status_type: res.status?.field_type, 
+                        status_min: res.status.field_possible_values?.at(0), 
+                        status_max: res.status.field_possible_values?.at(1), 
+                        status_on: res.status.field_possible_values?.at(0), 
+                        status_off: res.status.field_possible_values?.at(1) 
+                    }
+                );
+                handleFieldCountChange({ target: { value: res.received_data_config.length } });
+                setDeviceFields(res.received_data_config);
+            })
+            .catch((err) => {
+                console.log(err);
+                toast.error('Algo deu errado ao buscar o dispositivo');
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     }
+
 
     const handleFieldCountChange = (e) => {
         const count = parseInt(e.target.value, 10);
@@ -107,8 +156,8 @@ const FormDispositivo = () => {
         }
 
         const status = {
-            field_name: inputs?.status_name,
-            field_type: inputs?.status_type,
+            field_name: inputs.status_name,
+            field_type: inputs.status_type,
             field_possible_values: inputs?.status_type === 'switch' ? [inputs?.status_off, inputs?.status_on] : [inputs?.status_min, inputs?.status_max],
             field_value: null
         }
@@ -116,28 +165,41 @@ const FormDispositivo = () => {
         const data = {
             id: inputs?.id,
             name: inputs?.name,
-            category_id: inputs?.category,
-            location_id: inputs?.location,
+            category: inputs?.category,
+            location: inputs?.location,
             config: JSON.parse(inputs?.config),
             status: status,
             received_data_config: deviceFields,
             project: inputs?.project
         }
-        createDevice(data)
-            .then(() => {
-                navigate("/dispositivos");
-            })
-            .catch((err) => {
-                console.log(err);
-                toast.error('Algo deu errado ao criar o dispositivo');
-            });
+        if (deviceId) {
+            updateDevice(data)
+                .then(() => {
+                    navigate("/dispositivos");
+                })
+                .catch((err) => {
+                    console.log(err);
+                    toast.error('Algo deu errado ao atualizar o dispositivo');
+                });
+            return;
+        }
+        else {
+            createDevice(data)
+                .then(() => {
+                    navigate("/dispositivos");
+                })
+                .catch((err) => {
+                    console.log(err);
+                    toast.error('Algo deu errado ao criar o dispositivo');
+                });
+        }
 
     }
 
     useEffect(() => {
         setInputs({ ...inputs, id: deviceId, project: localProjectId });
         if (deviceId) {
-            // loadCategoryById(categoryId);
+            loadDeviceById(deviceId);
         }
         loadCategories();
         loadLocations();
@@ -159,7 +221,7 @@ const FormDispositivo = () => {
                         </Form.Group>
                         <Form.Group className="col-6 offset-3 mt-3">
                             <Form.Label>Localização</Form.Label>
-                            <Form.Select name="location" value={inputs?.location} onChange={localHandleChange}>
+                            <Form.Select name="location" value={inputs.location?.id} onChange={handleSelectChange}>
                                 <option>Selecione uma localização...</option>
                                 {locations.map((location, index) => (
                                     <option key={index} value={location.id}>{location.name}</option>
@@ -168,10 +230,10 @@ const FormDispositivo = () => {
                         </Form.Group>
                         <Form.Group className="col-6 offset-3 mt-3">
                             <Form.Label>Categoria</Form.Label>
-                            <Form.Select value={selectedCategoryIndex} onChange={(e) => handleSelectChange(e)}>
+                            <Form.Select name="category" value={inputs.category?.id} onChange={handleSelectChange}>
                                 <option value="0">Selecione uma categoria...</option>
                                 {categories.map((category, index) => (
-                                    <option key={index} value={index + 1}>{category.name}</option>
+                                    <option key={index} value={category.id}>{category.name}</option>
                                 ))}
                             </Form.Select>
                         </Form.Group>
@@ -189,9 +251,9 @@ const FormDispositivo = () => {
                             <Form.Control
                                 as="textarea"
                                 name="config"
-                                value={inputs?.config}
+                                value={inputs?.config || JSON.stringify(inputs.category?.base_settings, null, 2)}
                                 onChange={localHandleJsonChange}
-                                disabled={selectedCategoryIndex == "0"}
+                                disabled={inputs.category?.id === undefined}
                                 rows={10}
                                 placeholder="Digite seu JSON aqui..."
                                 isInvalid={!!error && inputs?.config}
@@ -217,7 +279,7 @@ const FormDispositivo = () => {
                         <Form.Group className="col-6 offset-3 mt-3">
                             <Form.Label>O dispositivo faz controle de estado? (Exemplo: Ligado/Desligado; Potência)</Form.Label>
                             <Form.Check type="checkbox">
-                                <Form.Check.Input type="checkbox" name="status_check" id="status_check" value={inputs?.status_check} onChange={localHandleChange} />
+                                <Form.Check.Input type="checkbox" name="status_check" id="status_check" checked={inputs?.status_check} value={inputs?.status_check} onChange={localHandleChange} />
                                 <Form.Check.Label htmlFor="status_check">Sim</Form.Check.Label>
                             </Form.Check>
                         </Form.Group>

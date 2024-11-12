@@ -52,16 +52,16 @@ const Dispotivos = () => {
                     {dispositivos.map((dispositivo) => (
                         <tr key={dispositivo.id}>
                             <td>{dispositivo.name}</td>
-                            <td>{dispositivo.location_name}</td>
-                            <td>{dispositivo.category_name}</td>
+                            <td>{dispositivo.location.name}</td>
+                            <td>{dispositivo.category.name}</td>
                             <td>{dispositivo.status?.field_name}: {dispositivo.status?.field_value}</td>
                             <td>
-                                <Button variant="btn btn-primary" onClick={() => navigate(`/editar_dispositivo/${dispositivo.id}`)}>
+                                <Button variant="btn btn-primary" onClick={() => navigate(`/dispositivos/${dispositivo.id}`)}>
                                     Editar
                                 </Button>
                             </td>
                             <td>
-                                <Button variant="btn btn-danger" onClick={() => navigate(`/excluir_dispositivo/${dispositivo.id}`)}>
+                                <Button variant="btn btn-danger">
                                     Excluir
                                 </Button>
                             </td>
