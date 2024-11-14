@@ -96,6 +96,24 @@ export async function updateDevice(device) {
     return newDevice.data;
 }
 
+export async function deleteDevice(deviceId, projectId) {
+    const params = { project_id: projectId };
+    const Device = await axios.delete(`${url}/device/${deviceId}/`, {
+        headers: config.headers,
+        params: params
+    });
+    return Device.data;
+}
+
+export async function fetchDeviceData(deviceId, projectId) {
+    const params = { project_id: projectId };
+    const DeviceData = await axios.get(`${url}/device/${deviceId}/get_device_data/`, {
+        headers: config.headers,
+        params: params,
+    });
+    return DeviceData.data;
+}
+
 export async function fetchCategories(projectId) {
     const CategoryList = await axios.get(`${url}/category/`, {
         params: { project_id: projectId },

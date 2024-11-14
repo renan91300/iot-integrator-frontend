@@ -23,7 +23,6 @@ const Projetos = () => {
     fetchProjects()
       .then((res) => {
         setProjects(res);
-        console.log(projects);
       })
       .catch((err) => {
         console.log(err);

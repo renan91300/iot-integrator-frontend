@@ -136,7 +136,7 @@ const FormDispositivo = () => {
         setFieldCount(count);
 
         // Gerar uma nova lista de campos para cada campo a ser preenchido
-        const newFields = Array.from({ length: count }, () => ({ name: '', field_type: '', format: '', topic: '', visual_type: '' }));
+        const newFields = Array.from({ length: count }, () => ({ name: '', field_type: '', format: '', topic: '', chart_type: '' }));
         setDeviceFields(newFields);
 
         setFieldCarouselIndex(0); // Reiniciar o índice do carousel
@@ -369,11 +369,11 @@ const FormDispositivo = () => {
                                 </Form.Group>
                                 <Form.Group className="mt-3" controlId={`fieldVisualization${fieldCarouselIndex}`}>
                                     <Form.Label>Visualização do campo</Form.Label>
-                                    <Form.Select value={deviceFields[fieldCarouselIndex].visual_type} onChange={(e) => handleDeviceFieldChange(fieldCarouselIndex, 'visual_type', e.target.value)}>
+                                    <Form.Select value={deviceFields[fieldCarouselIndex].chart_type} onChange={(e) => handleDeviceFieldChange(fieldCarouselIndex, 'chart_type', e.target.value)}>
                                         <option>Selecione uma visualização</option>
-                                        <option value="line_chart">Gráfico de linha</option>
-                                        <option value="bar_chart">Gráfico de barra</option>
-                                        <option value="pie_chart">Gráfico de pizza</option>
+                                        <option value="line">Gráfico de linha</option>
+                                        <option value="bar">Gráfico de barra</option>
+                                        <option value="pie">Gráfico de pizza</option>
                                         <option value="table">Tabela</option>
                                         <option value="number">Número</option>
                                     </Form.Select>

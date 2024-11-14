@@ -12,6 +12,7 @@ import Projetos from './pages/Projetos';
 import Localidades from './pages/Localidades';
 import FormLocalidade from './pages/FormLocalidade';
 import Membros from './pages/Membros';
+import DeviceMetrics from './pages/DeviceMetrics';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
           <Route index element={<PrivateRoute><Dashboard /></PrivateRoute>} />
           <Route path="dispositivos" element={<PrivateRoute><Dispositivos /></PrivateRoute>} />
           <Route path="dispositivos/:id" element={<PrivateRoute><FormDispositivo /></PrivateRoute>}></Route>
+          <Route path="dispositivos/:id/dashboard" element={<PrivateRoute><DeviceMetrics /></PrivateRoute>}></Route>
           <Route path="cadastrar_dispositivo" element={<PrivateRoute><FormDispositivo /></PrivateRoute>}></Route>
           <Route path="categorias" element={<PrivateRoute><Categorias /></PrivateRoute>}></Route>
           <Route path="categorias/:id" element={<PrivateRoute><FormCategoria /></PrivateRoute>}></Route>
