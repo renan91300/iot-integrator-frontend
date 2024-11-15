@@ -233,3 +233,8 @@ export async function sendInvitation(invitation) {
     const newInvitation = await axios.post(`${url}/invitation/`, invitation, config);
     return newInvitation.data;
 }
+
+export async function acceptInvitation(token) {
+    const response = await axios.post(`${url}/invitation/accept/`, { token }, config);
+    return response.data;
+}

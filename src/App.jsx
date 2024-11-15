@@ -13,6 +13,8 @@ import Localidades from './pages/Localidades';
 import FormLocalidade from './pages/FormLocalidade';
 import Membros from './pages/Membros';
 import DeviceMetrics from './pages/DeviceMetrics';
+import Register from './pages/Register';
+import AceitarConvite from './pages/AceitarConvite';
 
 function App() {
 
@@ -20,6 +22,8 @@ function App() {
     <Router>
       <Routes>
         <Route path='/login' element={<Login />} />
+        <Route path='/cadastro' element={<Register />} />
+        <Route path='/aceitar_convite/:token' element={<AceitarConvite />} />
         <Route
           path="/"
           element={
@@ -37,7 +41,7 @@ function App() {
           <Route path="localidades" element={<PrivateRoute><Localidades /></PrivateRoute>}></Route>
           <Route path="localidades/:id" element={<PrivateRoute><FormLocalidade /></PrivateRoute>}></Route>
           <Route path="cadastrar_localidade" element={<PrivateRoute><FormLocalidade /></PrivateRoute>}></Route>
-          <Route path="membros" element={<PrivateRoute><Membros /></PrivateRoute>}></Route>
+          <Route path="membros" element={<PrivateRoute><Membros /></PrivateRoute>}></Route>          
         </Route>
         <Route path="projetos" element={<PrivateRoute><Projetos /></PrivateRoute>}></Route>
       </Routes>

@@ -31,6 +31,14 @@ export async function getUserData() {
     return user.data;
 }
 
+export async function createUser(user) {
+    const newUser = await axios.post(`${url}/auth/users/`, user, {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+    });
+    return newUser.data;
+}
+
 export async function updateUser(user) {
     const NewUser = await axios.put(`${url}/auth/users/me/`, user, config);
     return NewUser.data;
