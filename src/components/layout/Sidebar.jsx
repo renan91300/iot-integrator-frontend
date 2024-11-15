@@ -15,9 +15,6 @@ const Sidebar = () => {
     <div className="sidebar">
       <h3>Bem-Vindo</h3>
       <Nav className="flex-column mt-3">
-        <Nav.Link as={NavLink} to="/" exact="true">
-          Home
-        </Nav.Link>
         <Nav.Link as={NavLink} to="/dispositivos">
           Dispositivos
         </Nav.Link>

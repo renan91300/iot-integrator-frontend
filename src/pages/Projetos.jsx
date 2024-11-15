@@ -35,7 +35,7 @@ const Projetos = () => {
 
   function onSelectProject(id) {
     sessionStorage.setItem('localProjectId', id);
-    navigate("/");
+    navigate("/dispositivos");
   }
 
   const localHandleChange = (event) => {

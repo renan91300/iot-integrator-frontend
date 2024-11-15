@@ -3,7 +3,6 @@ import Login from './pages/login';
 import PrivateRoute from "./components/privateRoutes";
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Layout from './components/layout/Layout';
-import Dashboard from './pages/Dashboard';
 import Dispositivos from './pages/Dispositivos';
 import FormDispositivo from './pages/FormDispositivo';
 import Categorias from './pages/Categorias';
@@ -30,7 +29,6 @@ function App() {
             <Layout />
           }
         >
-          <Route index element={<PrivateRoute><Dashboard /></PrivateRoute>} />
           <Route path="dispositivos" element={<PrivateRoute><Dispositivos /></PrivateRoute>} />
           <Route path="dispositivos/:id" element={<PrivateRoute><FormDispositivo /></PrivateRoute>}></Route>
           <Route path="dispositivos/:id/dashboard" element={<PrivateRoute><DeviceMetrics /></PrivateRoute>}></Route>
