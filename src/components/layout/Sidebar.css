@@ -1,39 +1,102 @@
-/* Estilos gerais da sidebar */
+/* Sidebar visível por padrão */
 .sidebar {
-    width: 250px;
-    min-height: 100vh;
-    background-color: rgb(27, 38, 56);
-    color: white;
-    padding: 20px;
-    position: relative;
+  width: 250px;
+  min-height: 100vh;
+  background-color: rgb(27, 38, 56);
+  color: white;
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+/* Sidebar escondida */
+.sidebar.closed {
+  transform: translateX(-100%);
+}
+
+/* Sidebar visível */
+.sidebar.open {
+  transform: translateX(0);
 }
 
 /* Título da sidebar */
 .sidebar h3 {
-    text-align: center;
-    border-bottom: 1px solid #555;
-    padding-bottom: 10px;
-    margin-bottom: 15px;
-  }
+  text-align: center;
+  border-bottom: 1px solid #555;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
 
 /* Links da sidebar */
 .sidebar .nav-link {
-    color: #ccc;
-    padding: 10px 0;
+  color: #ccc;
+  padding: 10px 0;
 }
 
 .sidebar .nav-link.active {
-    color: #fff;
-    font-weight: bold;
+  color: #fff;
+  font-weight: bold;
 }
 
 .sidebar .nav-link:hover {
-    color: #fff;
+  color: #fff;
 }
 
+
+/* Botão de logout */
 .logout-button {
-    position: absolute;
-    bottom: 20px; /* Distância do rodapé da sidebar */
-    width: calc(100% - 40px); /* Ajuste para caber no padding lateral */
-    left: 20px; /* Distância da lateral */
+  position: absolute;
+  bottom: 20px;
+  width: calc(100% - 40px);
+  left: 20px;
+}
+
+/* Botão de toggle */
+.toggle-button {
+  position: fixed; /* Fixo no topo, fora do fluxo da página */
+  top: 15px; /* Distância do topo */
+  left: 15px; /* Distância da lateral */
+  background-color: rgb(27, 38, 56); /* Cor do fundo */
+  color: white; /* Cor do texto */
+  border: none; /* Sem borda */
+  font-size: 1.5rem; /* Tamanho do ícone */
+  z-index: 1100; /* Colocado acima de outros elementos */
+  cursor: pointer; /* Cursor de clique */
+  display: none; /* Escondido por padrão */
+}
+
+/* Conteúdo ajustado com sidebar */
+.content {
+  margin-left: 250px;
+  padding: 20px;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+/* Conteúdo ajustado com sidebar escondida */
+.content.shrink {
+  margin-left: 0;
+}
+
+/* Regras para telas menores */
+@media (max-width: 768px) {
+  .toggle-button {
+    display: block; /* Exibe o botão de toggle */
   }
+
+  .sidebar {
+    position: fixed;
+    z-index: 1000;
+    transform: translateX(-100%); /* Escondida por padrão */
+  }
+
+  .sidebar.open {
+    transform: translateX(0); /* Aparece ao ser aberta */
+  }
+
+  .content {
+    margin-left: 0; /* Conteúdo ocupa largura total */
+  }
+}
