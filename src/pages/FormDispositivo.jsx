@@ -372,7 +372,6 @@ const FormDispositivo = () => {
                                         <option>Selecione uma visualização</option>
                                         <option value="line">Gráfico de linha</option>
                                         <option value="bar">Gráfico de barra</option>
-                                        <option value="pie">Gráfico de pizza</option>
                                         <option value="table">Tabela</option>
                                         <option value="number">Número</option>
                                     </Form.Select>

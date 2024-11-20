@@ -59,7 +59,6 @@ const Categorias = () => {
 
     useEffect(() => {
         fetch();
-        toast.success("Categorias carregadas com sucesso");
     }, []);
 
     return (

@@ -1,0 +1,51 @@
+/* Contêiner para rolagem horizontal */
+.table-container {
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+/* Estilo da tabela */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Estilo do cabeçalho */
+.custom-table thead tr {
+    background-color: #2b90d9;
+    color: #fff;
+    text-align: left;
+}
+
+.custom-table th {
+    padding: 12px 15px;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: capitalize;
+}
+
+/* Estilo das linhas */
+.custom-table tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.custom-table tbody .even-row {
+    background-color: #f9f9f9;
+}
+
+.custom-table tbody .odd-row {
+    background-color: #ffffff;
+}
+
+/* Estilo das células */
+.custom-table td {
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 14px;
+    color: #555;
+}

@@ -1,7 +1,7 @@
 import './App.css';
 import Login from './pages/login';
 import PrivateRoute from "./components/privateRoutes";
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import Dispositivos from './pages/Dispositivos';
 import FormDispositivo from './pages/FormDispositivo';
@@ -39,7 +39,8 @@ function App() {
           <Route path="localidades" element={<PrivateRoute><Localidades /></PrivateRoute>}></Route>
           <Route path="localidades/:id" element={<PrivateRoute><FormLocalidade /></PrivateRoute>}></Route>
           <Route path="cadastrar_localidade" element={<PrivateRoute><FormLocalidade /></PrivateRoute>}></Route>
-          <Route path="membros" element={<PrivateRoute><Membros /></PrivateRoute>}></Route>          
+          <Route path="membros" element={<PrivateRoute><Membros /></PrivateRoute>}></Route>  
+          <Route index element={<Navigate to="/dispositivos" />}></Route>
         </Route>
         <Route path="projetos" element={<PrivateRoute><Projetos /></PrivateRoute>}></Route>
       </Routes>
