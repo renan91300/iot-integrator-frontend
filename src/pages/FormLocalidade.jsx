@@ -90,19 +90,19 @@ const FormLocalidade = () => {
             <hr style={{ width: "45vw" }}></hr>
             <div className="">
                 <Form onSubmit={handleSubmit}>
-                    <Form.Group className="form-floating col-6">
+                    <Form.Group className="form-floating col-6 offset-3">
                         <Form.Control type="text" autoFocus name="name" value={inputs?.name} onChange={localHandleChange} placeholder="Digite o nome da localidade" />
                         <Form.Label>Nome da localidade</Form.Label>
                     </Form.Group>
-                    <Form.Group className="form-floating col-6 mt-3">
+                    <Form.Group className="form-floating col-6 offset-3 mt-3">
                         <Form.Control type="text" name="block" value={inputs?.block} onChange={localHandleChange} placeholder="Digite o bloco da localidade" />
                         <Form.Label>Bloco</Form.Label>
                     </Form.Group>
-                    <Form.Group className="form-floating col-6 mt-3">
+                    <Form.Group className="form-floating col-6 offset-3 mt-3">
                         <Form.Control type="text" name="floor" value={inputs?.floor} onChange={localHandleChange} placeholder="Digite o andar da localidade" />
                         <Form.Label>Andar</Form.Label>
                     </Form.Group>
-                    <div>
+                    <div className="offset-3">
                         <Button className="btn btn-danger" style={{ width: "150px" }} onClick={() => navigate("/localidades")}>Cancelar</Button>
                         <Button className="btn btn-success m-3" style={{ width: "150px" }} type="submit">Salvar</Button>
                     </div>

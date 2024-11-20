@@ -99,7 +99,7 @@ export default function LoginScreen() {
                                 </Button>
                             </div>
                             <div className="text-center mt-3">
-                                <Button variant="link" onClick={() => navigate('/register')}>
+                                <Button variant="link" onClick={() => navigate('/cadastro')}>
                                     Não tem uma conta? Cadastre-se
                                 </Button>
                             </div>

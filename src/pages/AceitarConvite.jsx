@@ -20,13 +20,13 @@ const AceitarConvite = () => {
 
         acceptInvitation(token)
             .then(() => {
-                toast.success("Convite aceito com sucesso!");
+                toast.success("Convite aceito com sucesso!", {delay: 1});
                 navigate("/login");
             })
             .catch((err) => {
                 if (err.response.status === 302) {
+                    toast.success("Para aceitar o convite, por favor, realize seu cadastro.", {delay: 1});
                     navigate("/cadastro");
-                    toast.success("Para aceitar o convite, por favor, realize seu cadastro.");
                 } else {
                     toast.error("Erro ao aceitar convite.");
                 }

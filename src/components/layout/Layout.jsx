@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from './Sidebar';
 import { Outlet } from 'react-router-dom';
 import './Layout.css';
+import { ToastContainer } from 'react-toastify';
 
 const Layout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -38,6 +39,7 @@ const Layout = () => {
           ☰
         </button>
       )}
+      <ToastContainer />
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/>
       <aside className={`content ${isSidebarOpen && !isSmallScreen ? 'with-sidebar' : ''}`}>
         <Outlet />

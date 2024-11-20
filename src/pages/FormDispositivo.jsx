@@ -207,7 +207,6 @@ const FormDispositivo = () => {
 
     return (
         <>
-            <ToastContainer />
             {loading && <div>Carregando...</div>}
             <h1>{deviceId ? "Editar" : "Adicionar"} um novo dispositivo</h1>
             <hr style={{ width: "45vw" }}></hr>

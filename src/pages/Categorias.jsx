@@ -59,11 +59,11 @@ const Categorias = () => {
 
     useEffect(() => {
         fetch();
+        toast.success("Categorias carregadas com sucesso");
     }, []);
 
     return (
         <>
-            <ToastContainer />
             <ModalConfirm
                 show={showModal}
                 question="Tem certeza que deseja excluir a categoria?"

@@ -91,17 +91,16 @@ const FormCategoria = () => {
 
     return (
         <>
-            <ToastContainer />
             {loading && <div>Carregando...</div>}
             <h1>{categoryId ? "Editar" : "Adicionar"} uma nova categoria</h1>
             <hr style={{ width: "45vw" }}></hr>
             <div className="">
                 <Form onSubmit={handleSubmit}>
-                    <Form.Group className="form-floating col-6">
-                        <Form.Control type="text" name="name" value={inputs?.name} onChange={localHandleChange} placeholder="Digite o nome da categoria" />
+                    <Form.Group className="form-floating col-6 offset-3">
+                        <Form.Control type="text" name="name" autoFocus value={inputs?.name} onChange={localHandleChange} placeholder="Digite o nome da categoria" />
                         <Form.Label>Nome da categoria</Form.Label>
                     </Form.Group>
-                    <Form.Group className="form-floating col-6 mt-3">
+                    <Form.Group className="form-floating col-6 offset-3 mt-3">
                         <Form.Control
                             as="textarea"
                             name="base_settings"
@@ -117,7 +116,7 @@ const FormCategoria = () => {
                         )}
                         <Form.Label>Configuração Base</Form.Label>
                     </Form.Group>
-                    <div>
+                    <div className="offset-3">
                         <Button className="btn btn-danger" style={{ width: "150px" }} onClick={() => navigate("/categorias")}>Cancelar</Button>
                         <Button className="btn btn-success m-3" style={{ width: "150px" }} type="submit">Salvar</Button>
                     </div>

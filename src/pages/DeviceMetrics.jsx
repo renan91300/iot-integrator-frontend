@@ -94,7 +94,7 @@ const DeviceMetrics = () => {
         <div>
             <h1>Métricas do Dispositivo</h1>
             <hr style={{ width: "45vw" }}></hr>
-            <div className="row">
+            <div className="row" style={{display: "flex"}}>
                 {device.received_data_config?.map((config, index) => (
                     <div className="col-6" key={index}>
                         <Chart

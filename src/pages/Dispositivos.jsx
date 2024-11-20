@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import { fetchDevices, updateDevice, deleteDevice } from "../services/users";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import "./DeviceTable.css"; // Arquivo de estilo para o interruptor
 import ModalConfirm from "../components/ModalConfirm";
@@ -77,7 +77,6 @@ const Dispositivos = () => {
 
     return (
         <>
-            <ToastContainer />
             <ModalConfirm
                 show={showModal}
                 question="Tem certeza que deseja excluir o dispositivo?"
