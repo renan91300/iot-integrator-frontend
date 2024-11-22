@@ -29,7 +29,7 @@ const Register = () => {
                 navigate('/login');
             })
             .catch((err) => {
-                toast.error("Erro ao criar conta: ");
+                toast.error("Erro ao criar conta");
                 if (err.response.status === 400) {
                     setErrors(err.response.data);
                 }

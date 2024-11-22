@@ -66,7 +66,8 @@ const FormDispositivo = () => {
         const { name, value } = event.target;
         if (name === 'category') {
             const category = categories.find((category) => category.id == value);
-            setInputs({ ...inputs, category: category });
+            setInputs({ ...inputs, category: category, config: JSON.stringify(category.base_settings, null, 2) });
+            
         } else {
             const location = locations.find((location) => location.id == value);
             setInputs({ ...inputs, location: location });
@@ -135,9 +136,31 @@ const FormDispositivo = () => {
         const count = parseInt(e.target.value, 10);
         setFieldCount(count);
 
-        // Gerar uma nova lista de campos para cada campo a ser preenchido
-        const newFields = Array.from({ length: count }, () => ({ name: '', field_type: '', format: '', topic: '', chart_type: '' }));
-        setDeviceFields(newFields);
+        // Gerar uma nova lista de campos para cada campo a ser preenchido se o deviceFields estiver vazio
+        // senão manter os campos já preenchidos e adicionar novos campos
+        
+        if (deviceFields.length === 0) {
+            const newFields = Array.from({ length: count }, (_, index) => ({
+                name: '',
+                field_type: '',
+                format: '',
+                topic: '',
+                chart_type: ''
+            }));
+            setDeviceFields(newFields);
+        } else {
+            const newFields = [...deviceFields];
+            for (let i = deviceFields.length; i < count; i++) {
+                newFields.push({
+                    name: '',
+                    field_type: '',
+                    format: '',
+                    topic: '',
+                    chart_type: ''
+                });
+            }
+            setDeviceFields(newFields);
+        }
 
         setFieldCarouselIndex(0); // Reiniciar o índice do carousel
     };
@@ -250,7 +273,7 @@ const FormDispositivo = () => {
                             <Form.Control
                                 as="textarea"
                                 name="config"
-                                value={inputs?.config || JSON.stringify(inputs.category?.base_settings, null, 2)}
+                                value={inputs?.config}
                                 onChange={localHandleJsonChange}
                                 disabled={inputs.category?.id === undefined}
                                 rows={10}
